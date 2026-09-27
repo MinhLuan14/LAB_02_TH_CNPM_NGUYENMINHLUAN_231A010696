@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sản phẩm - ShopOnline</title>
+
+    <link rel="stylesheet" th:href="@{/CSS/Home.css}">
+        <link rel="stylesheet" th:href="@{/CSS/Product.css}">
+    
+</head>
+
+<body>
+
+    <h1>Sản Phẩm</h1>
+
+    <h2>Danh mục</h2>
+
+    <div class="category-list">
+        <a th:href="@{/products}">
+            Tất cả sản phẩm
+        </a>
+
+        <a th:each="c : ${categories}"
+           th:href="@{/products/category/{id}(id=${c.id})}"
+           th:text="${c.name}">
+        </a>
+
+    </div>
+
+
+    <!-- DANH SÁCH SẢN PHẨM -->
+
+    <div class="product-list">
+
+        <div class="product-card"
+             th:each="p : ${products}">
+
+            <img th:src="${p.image}"
+                 width="200"
+                 height="150">
+
+            <h3 th:text="${p.name}"></h3>
+
+            <p>
+                Giá:
+                <span th:text="${#numbers.formatDecimal(p.price, 0, 0)}">
+                </span>
+                VNĐ
+            </p>
+
+            <a th:href="@{/products/{id}(id=${p.id})}">
+                Xem chi tiết
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
